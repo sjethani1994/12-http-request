@@ -1,6 +1,7 @@
-import { Component, input, output } from '@angular/core';
+import { Component, inject, input, output } from '@angular/core';
 
 import { Place } from './place.model';
+import { PlacesService } from './places.service';
 
 @Component({
   selector: 'app-places',
@@ -12,7 +13,8 @@ import { Place } from './place.model';
 export class PlacesComponent {
   places = input.required<Place[]>();
   selectPlace = output<Place>();
-
+  removePlace = input<Place[]>()
+  private placesService = inject(PlacesService);
   onSelectPlace(place: Place) {
     this.selectPlace.emit(place);
   }
